@@ -6,15 +6,15 @@
 
 
     // node generic -> (key , value) of any type
-    template<typename T>
+    template<typename T,typename V>
     class node {
         public:
-        T value;
-        int key;
-        node <T>* next;
-        node(T d,int k)
+        V value;
+        T key;
+        node <T,V>* next;
+        node(V v,T k)
         {
-            value=d;
+            value=v;
             key = k;
             next = NULL;
         }
@@ -22,26 +22,26 @@
     };
 
 
-    template<typename T>
+    template<typename T,typename V>
     class linkedlist
     {
     private:
-        node <T> * head;
+        node <T,V> * head;
     public:
         linkedlist()
         {
             head = NULL;
 
         };
-        node<T>* getHead() {
+        node<T,V>* getHead() {
              return head;
         }   
         bool isEmpty(){
              return head == NULL;
         }
-        void insertAtfront(T data,int key)
+        void insertAtfront(T data,V key)
         {
-            node <T> *newNode = new node<T>(data,key);
+            node <T,V> *newNode = new node<T,V>(data,key);
             if(head == NULL)
             {
                 head = newNode;
@@ -56,18 +56,20 @@
         {
             if(head!=NULL)
             {
+                node <T,V>* temp = head;
                 head=head->next;
+                delete temp;
             }
         }
 
         void deleation(int i)
         {
-            node <T> *previous = head;
+            node <T,V> *previous = head;
             if(i==0)
             {
                 head = head->next;
             }
-            node <T> *newNode = head->next;
+            node <T,V> *newNode = head->next;
 
             int c=1;
             while (newNode!=NULL&&c<i)
@@ -85,7 +87,7 @@
         // int findIndex(T data)
         // {
         //     int c=-1;
-        //     node <T> *newNode = head;
+        //     node <T,V> *newNode = head;
         //     while (newNode!=NULL||newNode->data!=data)
         //     {
         //         c++;
@@ -95,9 +97,9 @@
         // }
         
 
-        void insertAtend(T data,int key)
+        void insertAtend(T data,V key)
         {
-            node <T> *newNode = new node<T>(data,key);
+            node <T,V> *newNode = new node<T,V>(data,key);
             
             if(head == NULL)
             {
@@ -105,7 +107,7 @@
             
             }
             else{
-                node <T> * temp = head;
+                node <T,V> * temp = head;
                 while (temp->next!=NULL)
                 {
                     temp=temp->next;
@@ -115,9 +117,9 @@
         }
 
         
-        void show(int key)
+        void show(V key)
         {
-            node  <T>* newNode = head;
+            node  <T,V>* newNode = head;
             while(newNode!=NULL)
             {
                 if(key==newNode->key)

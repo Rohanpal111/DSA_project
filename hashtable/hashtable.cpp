@@ -1,25 +1,42 @@
 #include <stdio.h>
-#include "main.h"
+#include <string>
+
+#include "../main.h"
 
 
 //        key->type,key->value
-template<typename T,typename V,typename D>
+template<typename T,typename V>
  class hashtable
  {
     public:
     int size;
     int current = 0;
-    linkedlist <D>* arr;
+    linkedlist <T,V>* arr;
     hashtable(int s)
     {
         size = s;
-        arr = new linkedlist<D>[size];
+        arr = new linkedlist<T,V>[size];
     }
-    int generateKey(T key)
+    int generateKey(int key)
     {
         return key%size;
     }
-
+    int generatekey(char key)
+    {
+        return key%size;
+    }
+    long long int generateKey(char* key)
+    {
+        long long int sum = 0;
+        int i = 0;
+        while(key[i]!='\0')
+        {
+            sum+=key[i];
+            i++;
+        }
+        return sum%size;
+    }
+    
 
     void insert(V value,T key)
     {
@@ -38,7 +55,7 @@ template<typename T,typename V,typename D>
 
         arr[newKey].insertAtend(value, key );
     }
-    void triversing(int key)
+    void triversing(T key)
     {
         int key1=generateKey(key);
         arr[key1].show(key);
@@ -47,12 +64,12 @@ template<typename T,typename V,typename D>
     {   
 
         size=s*2;
-        linkedlist <D> *arr2 = arr;
-        arr = new linkedlist<D>[size];
+        linkedlist <T,V> *arr2 = arr;
+        arr = new linkedlist<T,V>[size];
         for(int i=0;i<size;i++)
         {
 
-            node <D> * temp =arr2[i].getHead();
+            node <T,V> * temp =arr2[i].getHead();
             while(temp!=NULL)
             {
                 insert(temp->value,temp->key);
@@ -61,7 +78,7 @@ template<typename T,typename V,typename D>
             
         }
         
-        
+            
 
     }
 
@@ -70,10 +87,12 @@ template<typename T,typename V,typename D>
 
  int main(){
 
-    hashtable <int,int,int> h1(4);
-    h1.insert(20,0);
-    h1.insert(30,6);
-    h1.triversing(6);
+    hashtable <char*,char*> h1(4);
+     h1.insert((char*)"Apple", (char*)"A");
+    h1.insert((char*)"Banana", (char*)"B");
+    h1.insert((char*)"Carrot", (char*)"C");
+
+    h1.triversing((char*)"A");
 
     
     
