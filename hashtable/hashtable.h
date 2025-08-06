@@ -65,8 +65,9 @@ template<typename T,typename V>
 
         size=s*2;
         linkedlist <T,V> *arr2 = arr;
-        arr = new linkedlist<T,V>[size];
-        for(int i=0;i<size;i++)
+        arr = new linkedlist<T,V>[size];    
+        this->current;
+        for(int i=0;i<s;i++)
         {
 
             node <T,V> * temp =arr2[i].getHead();
@@ -77,6 +78,7 @@ template<typename T,typename V>
             }
             
         }
+        delete[] arr2;
         
             
 
@@ -85,17 +87,17 @@ template<typename T,typename V>
  }
 ;
 
- int main(){
+//  int main(){
 
-    hashtable <char*,char*> h1(4);
-     h1.insert((char*)"Apple", (char*)"A");
-    h1.insert((char*)"Banana", (char*)"B");
-    h1.insert((char*)"Carrot", (char*)"C");
+//     hashtable <char*,char*> h1(4);
+//      h1.insert((char*)"Apple", (char*)"A");
+//     h1.insert((char*)"Banana", (char*)"B");
+//     h1.insert((char*)"Carrot", (char*)"C");
 
-    h1.triversing((char*)"A");
+//     h1.triversing((char*)"A");
 
     
     
-    // h1.triversing(20);
+//     // h1.triversing(20);
 
- }
+//  }

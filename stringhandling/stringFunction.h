@@ -118,8 +118,11 @@ int countWords(char str[])
     }
     return c;
 }
+
+
 int my_strcasestr(char *str1,char *str2,bool s1)
 {
+     if (str1 == NULL || str2 == NULL) return -1;
     if(s1)
     {
         lower(str1);
@@ -138,34 +141,35 @@ int my_strcasestr(char *str1,char *str2,bool s1)
                 i++;
                 j++;
                 count++;
+                if(count==strlen(str1))
+                return  j - count;
             }
             else{
-                count=0;
+                j=j-count+1;
                 i=0;
-                j++;
+                count=0;
             }
             
         }
 
     }
-    if(count==strlen(str1))
-    return 1;
-    else 
-    return 0;
+    
+     
+    return -1;
 
 }
 
 
-        bool startsWith(char str[],const char* prefix)
-        {
-            int i=0;
-            while(prefix[i]!='\0')
-            {
-                if(str[i]!=prefix[i]) return false;
-                i++;
-            }
-            return true;
-        }
+bool startsWith(char str[],const char* prefix)
+{
+    int i=0;
+    while(prefix[i]!='\0')
+    {
+        if(str[i]!=prefix[i]) return false;
+        i++;
+    }
+    return true;
+}
 
 
 
