@@ -105,6 +105,26 @@ char *reverse(char *str)
 //     return 0;
 
 // }
+bool isHTMLLink(char *url)
+{
+    int len = strlen(url);
+    if (len >= 4)
+    {
+        if (strCmp(&url[len - 4], (char*)".pdf") == 0)
+            return false;
+        if (strCmp(&url[len - 4], (char*)".jpg") == 0)
+            return false;
+        if (strCmp(&url[len - 4], (char*)".png") == 0)
+            return false;
+        if (strCmp(&url[len - 4], (char*)".css") == 0)
+            return false;
+        if (strCmp(&url[len - 3], (char*)".js") == 0)
+            return false;
+    }
+        return true;
+}
+
+
 int countWords(char str[])
 {
 

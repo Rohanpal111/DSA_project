@@ -52,6 +52,7 @@
                 head = newNode;
             }
         }
+        
         void deleationAtfirst()
         {
             if(head!=NULL)
@@ -84,6 +85,9 @@
             
 
         }
+
+
+        
         // int findIndex(T data)
         // {
         //     int c=-1;

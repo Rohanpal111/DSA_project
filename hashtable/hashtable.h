@@ -36,13 +36,48 @@ template<typename T,typename V>
         }
         return sum%size;
     }
+    void printAll()
+{
+    for(int i = 0; i < size; i++)
+    {
+        node<T, V>* temp = arr[i].getHead();
+        if(temp != NULL)
+        {
+            cout << "Index " << i << ":\n";
+            while(temp != NULL)
+            {
+                cout << "  Key: " << temp->key << ", Value: " << temp->value << endl;
+                temp = temp->next;
+            }
+        }
+    }
+}
+
+   
+    void show()
+    {
+        for(int i = 0; i < size; i++)
+    {
+        node<T, V>* temp = arr[i].getHead();
+        if(temp != NULL)
+        {
+            cout << "Index " << i << ":\n";
+            while(temp != NULL)
+            {
+                cout << "  Key: " << temp->key << ", Value: " << temp->value << endl;
+                temp = temp->next;
+            }
+        }
+    }
+    }
     
 
     void insert(V value,T key)
     {
+        
 
         float per = (float)current/size*100;
-        if(per>50)
+        if(per>70)
         {
             resize(size,current);
         }
@@ -50,10 +85,12 @@ template<typename T,typename V>
         if(arr[newKey].isEmpty())
         {
             current++;
-            
         }
+        arr[newKey].insertAtend(value, key);
+        
+        
+        
 
-        arr[newKey].insertAtend(value, key );
     }
     void triversing(T key)
     {
